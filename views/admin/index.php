@@ -11,25 +11,39 @@ $categories = categories();
 
 
 <div class="container">
+
     
     <h1>Liste des produits</h1>
    
     <div class="d-flex gap-3">
+        <a href="/views/admin/indexCategories.php" class="btn btn-secondary mb-3" >Consulter categories</a>
         <button class="btn btn-outline-dark mb-3" id="btnAjouter">Ajouter Produit</button>
-        <a href="/views/admin/categories/addCategory.php" class="btn btn-outline-dark mb-3 disabled">Ajouter ue Categorie</a>
     </div>
 
     <div class="row  justify-content-center position-relative">
 
     <div class=" d-flex flex-column position-relative">
 
-    <?php if(isset($_SESSION['error'])): ?>
-        <div class="alert alert-danger" role="alert">
-            <b>erreur lors de l ajout du produit</b>
-            <?php echo htmlspecialchars($_SESSION['error']); ?>
+    <?php if (isset($_SESSION['error']) || isset($_SESSION['success'])): ?>
+
+        <?php 
+            $isError = isset($_SESSION['error']);
+            $message = $isError ? $_SESSION['error'] : $_SESSION['success'];
+        ?>
+
+        <div class="alert alert-<?= $isError ? 'danger' : 'success' ?>" role="alert">
+            <?= htmlspecialchars($message) ?>
         </div>
-        <?php unset($_SESSION['error']); ?>
+
+        <?php 
+            unset($_SESSION['error']);
+            unset($_SESSION['success']);
+        ?>
+
     <?php endif; ?>
+
+
+   
     
    
     <div class="voile-modale" id="voile"></div>
@@ -81,6 +95,7 @@ $categories = categories();
         </div>
     </div> 
 
+   
 
         
        
@@ -160,9 +175,14 @@ $categories = categories();
         max-width: 600px;
     }
 
+
+    
+
     .formulaire.active {
         display: block;
     }
+
+  
 
     .contenu-modal {
         background: white;
@@ -171,26 +191,30 @@ $categories = categories();
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         position: relative;
     }
-
     .contenu-modal h2 {
         margin-bottom: 20px;
         color: #313732;
     }
 
+  
     .btn-close {
         position: absolute;
         top: 15px;
         right: 15px;
     }
+
+   
 </style>
 
 
 <script>
     const btnAjouter = document.getElementById('btnAjouter');
     const modal = document.getElementById('modal');
-    const voile = document.getElementById('voile');
     const btnFermer = document.getElementById('btnFermer');
-    const form = document.getElementById('form');
+
+    const voile = document.getElementById('voile');
+
+
 
     
     btnAjouter.addEventListener('click', (e) => {
@@ -208,15 +232,18 @@ $categories = categories();
         document.body.style.overflow = 'auto';
     });
 
-   
-    voile.addEventListener('click', (e) => {
+     voile.addEventListener('click', (e) => {
         modal.classList.remove('active');
         voile.classList.remove('active');
         document.body.style.overflow = 'auto';
     });
 
-
    
+   
+
+
+
+
 
 
 
