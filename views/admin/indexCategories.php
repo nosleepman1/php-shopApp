@@ -16,7 +16,7 @@ $categories = categories();
    
     <div class="d-flex gap-3">
         <a href="/views/admin/index.php" class="btn btn-secondary mb-3" >Consulter produits</a>
-        <button class="btn btn-outline-dark mb-3" id="btnAjouterCategory">Ajouter ue Categorie</button>
+        <button class="btn btn-outline-dark mb-3" id="btnAjouterCategory">Ajouter Categorie</button>
     </div>
 
     <div class="row  justify-content-center position-relative">
@@ -96,12 +96,12 @@ $categories = categories();
                         <td >
 
                             <div class="d-flex gap-2">
-                                <a href="/views/admin/products/editProduct.php?id=<?= $product['id'] ?>" 
+                                <a href="/views/admin/categories/updateCategory.php?id=<?= $category['id'] ?>" 
                                 class="btn btn-primary">
                                 modifier</a>
 
-                                <form action="/actions/products/deleteProduct_action.php" method="post">
-                                    <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                                <form action="/actions/categories/deleteCategory_action.php" method="post">
+                                    <input type="hidden" name="id" value="<?= $category['id'] ?>">
                                     <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
                             </div>
