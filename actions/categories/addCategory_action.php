@@ -11,15 +11,15 @@
 
             if($result) {
                 $_SESSION['success'] = "categorie créée avec success";
-                header('Location: /views/admin/index.php');
+                header('Location: /views/admin/indexCategories.php');
             } else {
                 $_SESSION['error'] = 'echec de la creation de categorie';
-                header('Location: /views/admin/index');
+                header('Location: /views/admin/indexCategories.php');
             }
         } else {
             $_SESSION['error'] = 'Veuillez saisir le libelle de la cotegorie';
-            header('Location: /views/admin/index');
+            header('Location: /views/admin/indexCategories.php');
         }
     } else {
-        header('Location: /views/admin/index');
+        header('Location: /views/admin/indexCategories.php');
     }

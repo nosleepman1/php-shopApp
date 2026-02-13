@@ -50,8 +50,7 @@
 
     function getAll() {
         global $pdo;
-
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT *, c.categoryName FROM products p JOIN categories c ON p.category_id = c.id";
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll();
     }

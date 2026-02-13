@@ -1,5 +1,5 @@
 <?php 
 
-    require '../../database/products_db.php';
+    require_once '../../database/products_db.php';
 
     $products = getAll();

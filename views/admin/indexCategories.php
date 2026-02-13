@@ -91,7 +91,7 @@ $categories = categories();
                     
                     <tr>
                         <td> <?= $category['id'] ?> </td>
-                        <td> <?= $category['libelle'] ?> </td>
+                        <td> <?= $category['categoryName'] ?> </td>
                         
                         <td >
 
