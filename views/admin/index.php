@@ -85,7 +85,7 @@ $categories = categories();
                     <select class="form-control" name="category_id">
                         <option value="">-- Sélectionner une catégorie --</option>
                         <?php foreach ($categories as $category): ?>
-                            <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['libelle']) ?></option>
+                            <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['categoryName']) ?></option>
                         <?php endforeach; ?>
                     </select>    
                 </div>
@@ -107,6 +107,7 @@ $categories = categories();
                         <td>Description</td>
                         <td>Quantité</td>
                         <td>Prix</td>
+                        <td>Categorie</td>
                         <td>Actions</td>
                     </tr>
             </thead>
@@ -120,6 +121,7 @@ $categories = categories();
                         <td> <?= $product['description'] ?> </td>
                         <td> <?= $product['prix'] ?> </td>
                         <td> <?= $product['quantite'] ?> </td>
+                        <td> <?= $product['categoryName'] ?> </td>
                         
                         <td >
 
