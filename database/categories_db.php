@@ -5,7 +5,7 @@
     function createCategory($libelle){
         global $pdo;
 
-        $sql = 'INSERT INTO categories (libelle) VALUES (:libelle)';
+        $sql = 'INSERT INTO categories (categoryName) VALUES (:libelle)';
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':libelle', $libelle, PDO::PARAM_STR);
@@ -22,7 +22,7 @@
 
     function updateCategory($id, $libelle){
         global $pdo;
-        $sql = 'UPDATE categories SET libelle=:libelle WHERE id=:id';
+        $sql = 'UPDATE categories SET categoryName=:libelle WHERE id=:id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':libelle', $libelle, PDO::PARAM_STR);
@@ -40,7 +40,7 @@
 
     function all(){
         global $pdo;
-        $sql = 'SELECT * FROM categories ORDER BY libelle';
+        $sql = 'SELECT * FROM categories ORDER BY categoryName';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
