@@ -58,7 +58,7 @@ $categories = categories();
 
             
 
-            <form action="/actions/products/addProduct_action.php" method="POST" id="form">
+            <form action="/actions/products/addProduct_action.php" method="POST" id="form" enctype="multipart/form-data">
 
                 <div class="form-group mb-3">
                     <label for="libelle">Libelle</label>
@@ -89,6 +89,8 @@ $categories = categories();
                         <?php endforeach; ?>
                     </select>    
                 </div>
+
+                <div class="form-group mb-3"><input type="file" name="image" accept="image/*" class="form-control"></div>
 
                 <button type="submit" class="btn btn-primary">Soumettre</button>
             </form> 

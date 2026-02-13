@@ -12,8 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $description = $_POST['description'];
         $user_id = $_SESSION['user_id'];
         $category_id = $_POST['category_id'];
+        $image = $_FILES['image'];
 
-       if(!empty($libelle) && !empty($prix) && !empty($quantite) && !empty($description)) {
+       if(!empty($libelle) && !empty($prix) && !empty($quantite) && !empty($description) && !empty($image ) && $image['error'] ==  0) {
             
             if($prix < 0 || $prix > 20000000 || $quantite < 5 || $quantite > 100) {
                 $_SESSION['error'] = "Le prix et la quantité doivent être des valeurs positives.";
@@ -27,7 +28,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
 
-            $result = create($libelle, $prix, $quantite, $description, $user_id, $category_id);
+            $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $uniqueName = uniqid('product_', true) . '.' . $extension;
+
+            $destination = __DIR__ . '/../../public/products/' . $uniqueName;
+
+            $move = move_uploaded_file($image['tmp_name'], $destination);
+
+            if (!$move) {
+                $_SESSION['error'] = "erreur lors de l ajout de l image";
+                header('Location: /views/admin/index.php');
+                exit();
+            }
+
+            $imageUrl = '/public/products/' . $uniqueName;
+
+            $result = create($libelle, $prix, $quantite, $description, $user_id, $category_id, $imageUrl);
 
             if ($result) {
                 header('Location: /views/admin/index.php');
