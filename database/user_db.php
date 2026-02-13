@@ -36,3 +36,13 @@ function getFullName($id) {
     $user = $stmt->fetch();
     return $user ? $user['firstname'] . ' ' . $user['lastname'] : null;
 }
+
+function getIntials($id) {
+    global $pdo;
+        $sql = "SELECT lastname, firstname FROM users WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $user = $stmt->fetch();
+        return $user ? strtoupper($user["firstname"][0]) . strtoupper($user["lastname"][0]) : null;
+}
