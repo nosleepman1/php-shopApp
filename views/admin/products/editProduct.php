@@ -65,7 +65,7 @@
                     <label for="description">Categories</label>
                     <select name="category_id" class="form-select">
                         <?php foreach($categories as $category): ?>
-                            <option value="<?= $category['id'] ?>"> <?= $category['libelle'] ?> </option>
+                            <option value="<?= $category['id'] ?>"> <?= $category['categoryName'] ?> </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
